@@ -1,0 +1,92 @@
+
+<div class="container">
+    <div class="chart-container" >    
+        <h3>   Data visualization of Hackers List (votes)</h3>
+      <canvas id="canvas" width="400" height="300"></canvas>    
+      </div>
+    <h1 class="heakers-title"> Hackers List</h1>
+    <div class="wrapper">
+        <div class="list-wrapper">
+                <div class="admin" title="Admin Can only Add & Delete The Candidate">
+            <div class="interactive-features">
+                <div class="actions">
+                    <span class="add"><i class="fa fa-user"></i> </span>
+                    <span class="edit"><i class="fa fa-pencil"></i> </span>
+                    <span class="delete"><i class="fa fa-trash"></i> </span>
+                </div>
+            </div>
+        </div>
+            <div class="list" *ngFor="let hacker of hackersList" (click)="displayDetails(hacker)">
+                <h2 class="list-title">{{hacker.Name}}</h2>
+            </div>
+        </div>
+    
+        <div class="details-wrapper">
+            <ng-container *ngIf="hacker;else otherContent">
+                <span class="label-title">Name</span>
+                <h1 class="details-title">{{hacker.Name}}</h1>
+                <span class="label-title">ExpertIn</span>
+                <table class="expertin-table">
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Rating</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <tr>
+                            <td>DataStructure</td>
+                            <td>
+                                <i class="fa fa-star" *ngFor="let item of [].constructor(hacker.ExpertIn.DataStructure)"></i>
+                                <i class="fa fa-star-o" *ngFor="let item of [].constructor(5-hacker.ExpertIn.DataStructure)"></i>
+                            </td>
+                            <td> {{hacker.ExpertIn.DataStructure}}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Algorithims</td>
+                            <td>
+                                <i class="fa fa-star" *ngFor="let item of [].constructor(hacker.ExpertIn.Algorithims)"></i>
+                                <i class="fa fa-star-o" *ngFor="let item of [].constructor(5-hacker.ExpertIn.Algorithims)"></i>
+                            </td>
+                            <td> {{hacker.ExpertIn.Algorithims}}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Cpp</td>
+                            <td>
+                                <i class="fa fa-star" *ngFor="let item of [].constructor(hacker.ExpertIn.Cpp)"></i>
+                                <i class="fa fa-star-o" *ngFor="let item of [].constructor(5-hacker.ExpertIn.Cpp)"></i>
+                            </td>
+                            <td> {{hacker.ExpertIn.Cpp}}/5</td>
+                        </tr>
+                        <tr>
+                            <td>Java</td>
+                            <i class="fa fa-star" *ngFor="let item of [].constructor(hacker.ExpertIn.Java)"></i>
+                            <i class="fa fa-star-o" *ngFor="let item of [].constructor(5-hacker.ExpertIn.Java)"></i>
+    
+                            <td> {{hacker.ExpertIn.Java}}/5</td>
+    
+                        </tr>
+                        <tr>
+                            <td>Pyton</td>
+                            <i class="fa fa-star" *ngFor="let item of [].constructor(hacker.ExpertIn.Pyton)"></i>
+                            <i class="fa fa-star-o" *ngFor="let item of [].constructor(5-hacker.ExpertIn.Pyton)"></i>
+                            <td> {{hacker.ExpertIn.Pyton}}/5</td>
+    
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="label-title">No of challenges Solved</span>
+                <h6>{{hacker.NoOfChallengesSolved}}</h6>
+                <span class="label-title">Votes</span>
+                <h6>{{hacker.Votes}}</h6>
+              
+                <button class="vote-btn" (click)="vote(hacker)">Click Here To Vote <i class="fa fa-mouse-pointer "></i></button>
+                
+            </ng-container>
+        </div>
+        <ng-template #otherContent>
+            Click The HackerName
+          </ng-template>
+</div>
+</div>

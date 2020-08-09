@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+    font-family: 'Montserrat', Helvetica, sans-serif;
+    background: url('assets/images/bg2.png');
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
