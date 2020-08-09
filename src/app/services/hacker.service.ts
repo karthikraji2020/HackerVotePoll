@@ -19,5 +19,8 @@ export class HackerService {
     return this._http.put(`${environment.APIURL}/api/posts/${id}/vote`, {votes: votes});
   }
 
+  deleteHacker(id) {
+    return this._http.delete(`${environment.APIURL}/api/hackers/${id}`);
+  }
 
 }

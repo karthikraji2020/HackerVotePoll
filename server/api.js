@@ -12,7 +12,7 @@ router.get('/hackers', (req, res) => {
     }
   })
 });
-
+// create candidate  by Admin
 router.post('/hacker', function(req, res) {
 
   const hacker = new Hacker({
@@ -36,8 +36,9 @@ router.post('/hacker', function(req, res) {
     res.send(rec);
   })
 });
+// candidate vote by User
 
-router.put('/hackers/:id/upvote', function(req, res) {
+router.put('/hackers/:id/vote', function(req, res) {
   Hacker.findById(req.params.id, function(err, rec) {
     if(err) {
       return res.status(400).send("cannot find the post with given id")
@@ -51,20 +52,7 @@ router.put('/hackers/:id/upvote', function(req, res) {
   })
 })
 
-router.put('/hackers/:id/downvote', function(req, res) {
-  Hacker.findById(req.params.id, function(err, rec) {
-    if(err) {
-      return res.status(400).send("cannot find the post with given id")
-    }
-    if(!rec) {
-      return res.status(404).send("Hacker not found")
-    }
-    rec.Votes = rec.Votes - 1;
-    rec.save();
-    res.send(rec);
-  })
-})
-
+// candidate Delete by Id
 router.delete('/hackers/:id', function(req, res) {
   Hacker.deleteOne({_id: req.params.id}, function(err, rec) {
     if(err) {

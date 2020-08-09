@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HackerService } from 'src/app/services/hacker.service';
 import { Chart } from 'chart.js'; 
 import { CookieService } from 'ngx-cookie-service';
+import { Hacker,ExpertIn } from 'src/app/services/interfaces/Hacker';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,13 @@ import { CookieService } from 'ngx-cookie-service';
 export class HomeComponent implements OnInit {
   hackersList:any;
   hacker:any;
-  // data: Data[];  
+  // data: Hacker[];  
   votes = [];  
   hackerNames = [];  
   barchart :any;  
 
   post = {
     hackerNames: '',
-    url: ''
   };
 
   constructor( private _hackerService:HackerService ,
@@ -45,14 +45,10 @@ export class HomeComponent implements OnInit {
       this.hacker=hacker;
   }
   vote(hacker) {
-
     if(!this._cookieService.check('isUserAlreadyVoted')){
       this._cookieService.set('isUserAlreadyVoted','True');
-      alert(this._cookieService.check('isUserAlreadyVoted'));
-    const thePost = this.hackersList.find(item => this.hacker._id === item._id);
-    thePost.votes = thePost.votes + 1;
     this._hackerService.vote(this.hacker._id, this.hacker.Votes).subscribe((data) => {
-      console.log(data);
+      this.getHackers();
     });
   }
    
